@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,21 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
    
-});
+// });
 
-Route::get('/about',function(){
-    return "Hi";
-});
+// Route::get('/about',function(){
+//     return "Hi";
+// });
 
-Route::get('/post/{id}',function($id){
+// Route::get('/post/{id}',function($id){
  
-    return "Page number ${id}";
-});
+//     return "Page number ${id}";
+// });
 
-Route::get('admin/posts/example',array('as'=>'admin',function(){
-   $url = route('admin');
-   return "this url ".$url;
-}));
+// Route::get('admin/posts/example',array('as'=>'admin',function(){
+//    $url = route('admin');
+//    return "this url ".$url;
+// }));
+
+Route::resource('post','PostController');
+
+Route::get('/post/{id}',[PostController::class,'index']);
+
+Route::get('/contract',[PostController::class,'contract']);
